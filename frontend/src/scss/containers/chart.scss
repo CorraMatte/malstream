@@ -1,0 +1,204 @@
+// Small card bar chart (SmallBarChartCard.jsx)
+
+.chart__small__card {
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.chart__small_card__wrapper {
+  display: flex;
+  margin-top: -15px;
+}
+
+.chart__small_card__total-label {
+  font-size: 18px;
+  height: 24px;
+  @include directify($directions) {
+    #{directed('margin-right')}: auto;
+    #{directed('padding-right')}: 10px;
+  }
+  margin-top: auto;
+  line-height: 24px;
+}
+
+.chart__small_card__total-label-total {
+  font-size: 14px;
+  height: 24px;
+  @include directify($directions) {
+    #{directed('margin-right')}: auto;
+    #{directed('padding-right')}: 10px;
+  }
+  margin-top: auto;
+  line-height: 24px;
+}
+
+.chart__small_card__total-label-modal:hover {
+  cursor: pointer;
+}
+
+.chart__trend-icon {
+  fill: $color-accent;
+  height: 24px;
+  width: 24px;
+  @include directify($directions) {
+    #{directed('margin-right')}: 3px;
+    transform: #{directed('mirrorY')}
+  }
+  min-width: 24px;
+  margin-top: auto;
+}
+
+.chart__small_card__wrapper-chart {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+
+  @media (min-width: 1200px) {
+    & {
+      min-width: 0;
+      max-width: 180px;
+    }
+  }
+}
+
+// Small card percentage chart (SmallPercentageChartCard.jsx)
+.chart__small_percentage__wrapper {
+
+  .chart__small_percentage__top-line {
+    display: flex;
+
+    .chart__small_percentage__total-label-modal:hover {
+      cursor: pointer;
+    }
+
+    .chart__small_percentage__total-label {
+      direction: ltr;
+      padding: 0;
+      font-size: 28px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      @include directify($directions) {
+        #{directed('margin-right')}: auto;
+      }
+      line-height: normal;
+
+      .chart__small_percentage__fractional-label {
+        font-size: 16px;
+        color: #d8dfe9;;
+      }
+    }
+  }
+
+  .chart__small_percentage__top-line--pink {
+    .chart__small_percentage__total-label {
+      color: #ff4861;
+    }
+  }
+
+  .chart__small_percentage__top-line--lime {
+    .chart__small_percentage__total-label {
+      color: #b8e986;
+    }
+  }
+
+  .chart__small_percentage__top-line--blue {
+    .chart__small_percentage__total-label {
+      color: #48b5ff;
+    }
+  }
+
+  .chart__small_percentage__top-line--turquoise {
+    .chart__small_percentage__total-label {
+      color: #4ce1b6;
+    }
+  }
+
+  .chart__small_percentage__title-label {
+    @include directify($directions) {
+      text-align: directed('left');
+    }
+    text-transform: uppercase;
+    position: relative;
+    margin: 0 0 20px;
+
+    h5 {
+      font-size: 12px;
+      color: #555555;
+      font-weight: 500;
+    }
+  }
+
+  .chart__trend-icon {
+    margin: 0;
+    height: 29px;
+    min-width: 28px;
+    fill: #d8dfe9;
+  }
+
+  .progress__label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .progress__label {
+    @include directify($directions) {
+      #{directed('right')}: -7px;
+    }
+  }
+
+  .progress-bar {
+    border-radius: 5px;
+    background-color: unset;
+  }
+
+}
+
+
+// Gauge style (SmallGaugeChart.jsx)
+.dashboard {
+  .chart__gauge__wrapper {
+    .chart__gauge__wrapper-pie {
+      margin-top: -50px;
+      margin-left: 40px;
+      height: 120px;
+
+      svg {
+        height: 120px;
+      }
+
+    }
+  }
+}
+
+.chart__gauge__wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .chart__gauge__wrapper-pie {
+
+    position: relative;
+    width: 100%;
+
+    div, svg {
+      width: 100% !important;
+      margin: 0 auto;
+    }
+
+    .chart__gauge__value-label {
+      margin: 0;
+      position: absolute;
+      top: calc(50% + 10px);
+      text-align: center;
+      width: 100%;
+      font-size: 26px;
+    }
+  }
+}
+

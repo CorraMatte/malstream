@@ -1,0 +1,15 @@
+.clamp-lines__button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  @include themify($themes) {
+    color: themed('colorText');
+  }
+}
+
+.clamp-lines__button:hover {
+  @include themify($themes) {
+    border-bottom: 1px solid themed('colorText');
+  }
+}

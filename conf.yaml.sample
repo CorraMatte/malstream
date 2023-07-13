@@ -1,0 +1,32 @@
+# Malstream configuration file
+elasticsearch:
+  url: <url>
+  id: <apikey_id>
+  key: <apikey_key>
+  verify_cert: <bool> = true
+
+capev2:
+  - <string>:
+      apikey: <apikey>
+      url: <url>
+
+intelowl:
+  - <string>:
+      apikey: <apikey>
+      url: <url>
+
+kibana:
+  url: <url>
+  id: <apikey_id>
+  key: <apikey_key>
+  verify_cert: <bool> = true
+
+mquery:
+  url: <url>
+
+rabbitmq:
+  host: <host_address>
+  password: <password>
+  user: <user>
+  vhost: <vhost>
+

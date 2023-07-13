@@ -1,0 +1,23 @@
+.recharts-text {
+  @include themify($themes) {
+    fill: themed('colorText');
+  }
+  opacity: 1;
+}
+
+.recharts-tooltip-wrapper {
+
+  .recharts-default-tooltip {
+    @include themify($themes) {
+      background: themed('colorBackgroundBody') !important;
+    }
+    border: 0 !important;
+  }
+
+  .recharts-tooltip-item {
+    @include themify($themes) {
+      color: themed('colorText') !important;
+    }
+  }
+
+}

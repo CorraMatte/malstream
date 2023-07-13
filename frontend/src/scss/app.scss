@@ -1,0 +1,50 @@
+@import 'settings/variable';  //themes' colors
+
+//vendor...
+@import './vendor';
+
+//base...
+@import 'generic/normalize.scss';
+@import 'generic/box-sizing.scss';
+@import 'generic/bootstrap-badge.scss';
+@import './base/scaffolding';         // styles of base elements
+@import './base/typography';          // base styles of h1-h6, p, span
+
+//components...
+@import './component/alert';                  // components/Alert.js ('reactstrap')
+@import './component/btn';                    // Button from 'reactstrap'
+@import './component/card';                   // Card, CardBody from 'reactstrap'
+@import './component/charts';                 // components/charts/*
+@import './component/collapse';               // components/Collapse.js ('reactstrap')
+@import './component/dropdown';               //
+@import './component/form';                   // <form> and all types of inputs
+@import './component/grid';                   // useless. using for grid presentation
+@import './component/modal';                  // components/Modal.js ('reactstrap')
+@import './component/pagination';             // components/Pagination.js ('reactstrap')
+@import './component/progress-bar';           // ProgressBar from 'reactstrap'
+@import './component/react-select';
+@import './component/search-result';          // components/SearchResult.js
+@import './component/select-options';         // <select> and <option>
+@import './component/sidebar';                // components/sidebar/*
+@import './component/table';                  // components/Table.js ('reactstrap+react-table')
+@import './component/tabs';                   // Nav, NavItem, NavLink, TabContent, TabPane from 'reactstrap'
+@import './component/toggle-btn';             // components/form/ToggleButton.js
+@import './component/topbar';                 // components/topbar/*
+@import './component/load';
+
+
+//objects...
+@import 'objects/layout.scss';        // layout settings
+
+
+// custom
+@import "containers/chart";
+@import "component/custom-badge";
+@import "component/clamp-line";
+@import "component/rules";
+@import "component/toast";
+@import 'component/icons';
+@import "component/search-menu";
+@import "component/custom-container";
+@import "containers/indicator-page";
+@import "containers/dashboard";

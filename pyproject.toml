@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "malstream"
+version = "0.1.0"
+description = "Automatic malware stream attribution"
+authors = ["Matteo Corradini <corra.matteo@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+uvicorn = "^0.18.2"
+fastapi = "*"
+yara-python = "^4.2.0"
+python-multipart = "^0.0.5"
+python-dateutil = "^2.8.2"
+elasticsearch = "^8.3.1"
+aiohttp = "^3.8.1"
+requests = "^2.28.1"
+pyintelowl = "^4.2.0"
+aiofiles = "^0.8.0"
+pytz = "^2022.1"
+pysigma = "*"
+celery = "*"
+idstools = "^0.6.4"
+pysigma-backend-elasticsearch = "*"
+python-magic = "^0.4.27"
+sentry-sdk = "^1.11.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

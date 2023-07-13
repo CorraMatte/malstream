@@ -1,0 +1,54 @@
+main {
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0 !important;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: inherit;
+
+  &::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    opacity: 0.3;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #212529;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #606071;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+}
+
+ul, ol {
+  // doesn't do RTL, it break a sidebar
+  padding-left: 15px;
+  margin-bottom: 0;
+  list-style-image: url('../../shared/img/circle.svg');
+}
+
+a {
+  color: $color-blue;
+  transition: all 0.3s;
+
+  &:hover {
+    text-decoration: none;
+    color: $color-blue-hover;
+  }
+}
+
+img {
+  width: 100%;
+}

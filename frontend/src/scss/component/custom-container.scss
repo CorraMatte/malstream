@@ -1,0 +1,45 @@
+.custom_card__container {
+    @include directify($directions) {
+        text-align: directed('left');
+    }
+
+    min-height: 75px;
+    background: #232329;
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    .custom_card__container-subhead {
+        margin-bottom: 2px;
+        font-size: 12px;
+        line-height: 1.25;
+        color: #dddddd;
+        max-width: 100%;
+        opacity: 0.7;
+
+    }
+
+    .custom_card__container-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: #ffffff;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+}
+
+
+.custom_card__container_report {
+    @extend .custom_card__container;
+
+    p {
+        word-break: break-all;
+    }
+}

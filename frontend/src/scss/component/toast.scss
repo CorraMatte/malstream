@@ -1,0 +1,16 @@
+.toast-default {
+  border-radius: 10px !important;
+  background: #333 !important;
+  color: #fff !important;
+  word-break: break-word;
+}
+
+.icon__toast-copy {
+  cursor: pointer;
+  fill: white;
+}
+
+.icon__toast-copy-float-right {
+  @extend .icon__toast-copy;
+  float: right;
+}

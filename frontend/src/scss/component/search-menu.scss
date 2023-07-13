@@ -1,0 +1,60 @@
+.theme-dark .search_bar {
+  font-size: 24px;
+  height: 48px;
+  border: 1px solid #40e5e8 !important;
+  border-radius: 5px;
+  background: #232329;
+  color: white;
+  width: 100%;
+  padding: 5px 10px;
+  transition: border 0.3s;
+
+  &:focus, &:active {
+    box-shadow: 0 0 0 0;
+  }
+}
+
+.dropdown__toggle {
+  height: 48px;
+  width: 100%;
+}
+
+.search_bar-button {
+  width: 18%;
+  margin-bottom: 10px;
+  height: 48px;
+  margin-right: 0 !important;
+}
+
+.result_menu-button {
+  width: 100%;
+  margin-bottom: 10px;
+  height: 48px;
+  margin-right: 0 !important;
+}
+
+
+.dropdown__menu__custom {
+  @extend .dropdown__menu;
+  padding: 10px;
+}
+
+.dropdown__menu__custom_small {
+  @extend .dropdown__menu__custom;
+  min-width: 3rem;
+}
+
+.badge-filter svg:hover {
+  cursor: pointer;
+}
+
+.div__sticky-top {
+  position: sticky;
+  top: 60px;
+  padding-top: 20px;
+  z-index: 10;
+
+  @include themify($themes) {
+    background: themed('colorBackgroundBody');
+  }
+}

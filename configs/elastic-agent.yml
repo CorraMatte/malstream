@@ -1,0 +1,257 @@
+id: c1b3d730-4c65-11ed-a75c-7dab4e8d604a
+revision: 1
+outputs:
+  default:
+    type: elasticsearch
+    hosts:
+      - >-
+        <url>
+    username: '<username>'
+    password: '<password>'
+output_permissions:
+  default:
+    _elastic_agent_monitoring:
+      indices: []
+    _elastic_agent_checks:
+      cluster:
+        - monitor
+    windows-1:
+      indices:
+        - names:
+            - logs-windows.forwarded-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-windows.powershell-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-windows.powershell_operational-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-windows.sysmon_operational-default
+          privileges:
+            - auto_configure
+            - create_doc
+    winlog-application-1:
+      indices:
+        - names:
+            - logs-winlog.winlog-default
+          privileges:
+            - auto_configure
+            - create_doc
+    winlog-security-1:
+      indices:
+        - names:
+            - logs-winlog.winlog-default
+          privileges:
+            - auto_configure
+            - create_doc
+    winlog-system-1:
+      indices:
+        - names:
+            - logs-winlog.winlog-default
+          privileges:
+            - auto_configure
+            - create_doc
+agent:
+  monitoring:
+    enabled: false
+    logs: false
+    metrics: false
+inputs:
+  - id: winlog-windows-e00bf332-ab39-465a-9464-703185254412
+    name: windows-1
+    revision: 4
+    type: winlog
+    use_output: default
+    meta:
+      package:
+        name: windows
+        version: 1.15.0
+    data_stream:
+      namespace: default
+    streams:
+      - id: winlog-windows.forwarded-e00bf332-ab39-465a-9464-703185254412
+        name: ForwardedEvents
+        data_stream:
+          dataset: windows.forwarded
+          type: logs
+        condition: '${{host.platform}} == ''windows'''
+        ignore_older: 72h
+        include_xml: true
+        processors:
+          - translate_sid:
+              ignore_failure: true
+              account_type_target: winlog.event_data._MemberAccountType
+              field: winlog.event_data.MemberSid
+              domain_target: winlog.event_data._MemberDomain
+              account_name_target: winlog.event_data._MemberUserName
+              ignore_missing: true
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
+        tags:
+          - forwarded
+        publisher_pipeline.disable_host: true
+      - id: winlog-windows.powershell-e00bf332-ab39-465a-9464-703185254412
+        name: Windows PowerShell
+        data_stream:
+          dataset: windows.powershell
+          type: logs
+        condition: '${{host.platform}} == ''windows'''
+        event_id: '400, 403, 600, 800'
+        ignore_older: 72h
+        include_xml: true
+        processors:
+          - translate_sid:
+              ignore_failure: true
+              account_type_target: winlog.event_data._MemberAccountType
+              field: winlog.event_data.MemberSid
+              domain_target: winlog.event_data._MemberDomain
+              account_name_target: winlog.event_data._MemberUserName
+              ignore_missing: true
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
+      - id: >-
+          winlog-windows.powershell_operational-e00bf332-ab39-465a-9464-703185254412
+        name: Microsoft-Windows-PowerShell/Operational
+        data_stream:
+          dataset: windows.powershell_operational
+          type: logs
+        condition: '${{host.platform}} == ''windows'''
+        event_id: '4103, 4104, 4105, 4106, 4100, 40961, 40962, 53504'
+        ignore_older: 72h
+        include_xml: true
+        processors:
+          - translate_sid:
+              ignore_failure: true
+              account_type_target: winlog.event_data._MemberAccountType
+              field: winlog.event_data.MemberSid
+              domain_target: winlog.event_data._MemberDomain
+              account_name_target: winlog.event_data._MemberUserName
+              ignore_missing: true
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
+      - id: winlog-windows.sysmon_operational-e00bf332-ab39-465a-9464-703185254412
+        name: Microsoft-Windows-Sysmon/Operational
+        data_stream:
+          dataset: windows.sysmon_operational
+          type: logs
+        condition: '${{host.platform}} == ''windows'''
+        ignore_older: 72h
+        include_xml: true
+        processors:
+          - translate_sid:
+              ignore_failure: true
+              account_type_target: winlog.event_data._MemberAccountType
+              field: winlog.event_data.MemberSid
+              domain_target: winlog.event_data._MemberDomain
+              account_name_target: winlog.event_data._MemberUserName
+              ignore_missing: true
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
+  - id: winlog-winlogs-0ff88f75-3a28-410a-a630-abf0c82f2344
+    name: winlog-application-1
+    revision: 1
+    type: winlog
+    use_output: default
+    meta:
+      package:
+        name: winlog
+        version: 1.7.0
+    data_stream:
+      namespace: default
+    streams:
+      - id: winlog-winlog.winlog-0ff88f75-3a28-410a-a630-abf0c82f2344
+        name: Application
+        data_stream:
+          dataset: winlog.winlog
+        condition: '${{host.platform}} == ''windows'''
+        include_xml: true
+        ignore_older: 72h
+        processors:
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
+  - id: winlog-winlogs-9a845d46-f56b-4eab-8a2e-c78605c0e880
+    name: winlog-security-1
+    revision: 1
+    type: winlog
+    use_output: default
+    meta:
+      package:
+        name: winlog
+        version: 1.7.0
+    data_stream:
+      namespace: default
+    streams:
+      - id: winlog-winlog.winlog-9a845d46-f56b-4eab-8a2e-c78605c0e880
+        name: Security
+        data_stream:
+          dataset: winlog.winlog
+        condition: '${{host.platform}} == ''windows'''
+        include_xml: true
+        ignore_older: 72h
+        processors:
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
+  - id: winlog-winlogs-1019d4ab-5322-4b7a-82d4-8e4c3917bffc
+    name: winlog-system-1
+    revision: 1
+    type: winlog
+    use_output: default
+    meta:
+      package:
+        name: winlog
+        version: 1.7.0
+    data_stream:
+      namespace: default
+    streams:
+      - id: winlog-winlog.winlog-1019d4ab-5322-4b7a-82d4-8e4c3917bffc
+        name: System
+        data_stream:
+          dataset: winlog.winlog
+        condition: '${{host.platform}} == ''windows'''
+        include_xml: true
+        ignore_older: 72h
+        processors:
+          - add_fields:
+              target: file
+              fields:
+                hash:
+                  md5: '{}'
+                  sha1: '{}'
+                  sha256: '{}'
